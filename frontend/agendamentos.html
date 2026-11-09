@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agendamentos | Pet Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-interna">
+
+  <input type="checkbox" id="alternarTema" class="tema-checkbox" aria-label="Ativar tema escuro">
+
+  <header class="topo">
+    <div class="topo-conteudo">
+      <div class="marca">
+        <svg class="marca-icone" viewBox="0 0 64 64" aria-hidden="true">
+          <ellipse cx="32" cy="42" rx="14" ry="11"/>
+          <circle cx="14" cy="28" r="6"/>
+          <circle cx="26" cy="16" r="6"/>
+          <circle cx="38" cy="16" r="6"/>
+          <circle cx="50" cy="28" r="6"/>
+        </svg>
+        <span class="marca-nome">Pet Care</span>
+      </div>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="cliente.html">Meus pets</a>
+        <a href="agendamentos.html" aria-current="page">Agendamentos</a>
+        <label for="alternarTema" class="tema-botao" title="Alternar entre tema claro e escuro">
+          <span class="tema-trilho" aria-hidden="true"></span>
+          <span class="tema-texto"></span>
+        </label>
+        <button type="button" id="sair" class="botao botao-sair">Sair</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="conteudo">
+
+    <section class="boas-vindas">
+      <h1>Agendamentos</h1>
+      <p>Escolha o pet, o serviço e o melhor horário para você.</p>
+    </section>
+
+    <div class="grade">
+
+      <!-- Formulário de agendamento -->
+      <section class="painel">
+        <h2>Novo agendamento</h2>
+
+        <form id="formAgendamento" novalidate>
+          <div class="campo">
+            <label for="pet">Pet</label>
+            <select id="pet" name="pet">
+              <option value="">Selecione um pet</option>
+              <!-- As opções são preenchidas pelo JavaScript com os pets do cliente -->
+            </select>
+            <span id="avisoSemPets" class="dica" hidden>
+              Você ainda não tem pets. <a href="cliente.html">Cadastre um pet</a> para agendar.
+            </span>
+          </div>
+
+          <div class="campo">
+            <label for="servico">Serviço</label>
+            <select id="servico" name="servico">
+              <option value="">Selecione</option>
+              <option value="Banho">Banho</option>
+              <option value="Tosa">Tosa</option>
+              <option value="Consulta veterinária">Consulta veterinária</option>
+            </select>
+          </div>
+
+          <div class="campo-duplo">
+            <div class="campo">
+              <label for="data">Data</label>
+              <input type="date" id="data" name="data">
+            </div>
+
+            <div class="campo">
+              <label for="horario">Horário</label>
+              <input type="time" id="horario" name="horario">
+            </div>
+          </div>
+
+          <!-- Mensagens de erro ou sucesso -->
+          <p id="mensagem" class="mensagem" role="alert" hidden></p>
+
+          <button type="submit" class="botao">Agendar</button>
+        </form>
+      </section>
+
+      <!-- Listagem de agendamentos -->
+      <section class="painel">
+        <h2>Meus agendamentos</h2>
+
+        <!-- Exibido pelo JavaScript quando não houver agendamentos -->
+        <p id="agendamentosVazio" class="estado-vazio" hidden></p>
+
+        <!--
+          Sugestão de estrutura para cada agendamento (o JavaScript pode criar este <li>):
+
+          <li class="item">
+            <div class="item-principal">
+              <strong class="item-titulo">Mel</strong>
+              <span class="selo">Banho</span>
+            </div>
+            <p class="item-detalhe">25/10/2026 às 14:00</p>
+          </li>
+        -->
+        <ul id="listaAgendamentos" class="lista"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

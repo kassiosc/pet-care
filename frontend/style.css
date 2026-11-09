@@ -1,0 +1,677 @@
+/* ==========================================================
+   PET CARE — style.css (compartilhado por todas as páginas)
+   Índice:
+   1. Variáveis e base
+   2. Marca (logo)
+   3. Botões
+   4. Formulários
+   5. Mensagens de sucesso e erro
+   6. Páginas de login e cadastro
+   7. Páginas internas (cabeçalho, conteúdo, grade)
+   8. Painéis e listas
+   8b. Alternar tema claro/escuro
+   9. Responsividade
+   ========================================================== */
+
+
+/* ---------- 1. Variáveis e base ---------- */
+:root {
+  /* Cores fixas */
+  --branco: #ffffff;
+  --amarelo: #f4b73f;
+  --amarelo-escuro: #d99a1c;
+  --azul-petroleo: #0e4a5c;
+
+  /* Tema claro (padrão) */
+  --fundo: #eef8f8;
+  --superficie: #ffffff;
+  --painel: #0e4a5c;
+  --titulo: #0e4a5c;
+  --texto: #1d3a44;
+  --texto-suave: #587480;
+  --borda: #c3dde1;
+  --azul-claro: #d9f0f2;
+  --azul-medio: #17798f;
+  --link: #17798f;
+  --link-hover: #0e4a5c;
+  --destaque: #0e4a5c;
+  --destaque-hover: #17798f;
+  --destaque-texto: #ffffff;
+  --placeholder: #8fa9b1;
+  --sombra: rgba(14, 74, 92, 0.07);
+  --erro: #b3372f;
+  --erro-fundo: #fbe9e7;
+  --sucesso: #23744b;
+  --sucesso-fundo: #e2f4ea;
+
+  --fonte-titulo: "Fredoka", "Trebuchet MS", sans-serif;
+  --fonte-texto: "Nunito", "Segoe UI", Arial, sans-serif;
+
+  --raio-grande: 20px;
+  --raio-medio: 12px;
+  --raio-pequeno: 8px;
+
+  color-scheme: light;
+}
+
+/* Tema escuro: ativado quando o checkbox #alternarTema está marcado */
+:root:has(#alternarTema:checked) {
+  --fundo: #0d1c21;
+  --superficie: #15292f;
+  --painel: #0a2a35;
+  --titulo: #8fdcea;
+  --texto: #e3f1f4;
+  --texto-suave: #9db9c1;
+  --borda: #2a4650;
+  --azul-claro: #1f3b44;
+  --azul-medio: #5cc0d6;
+  --link: #7fd3e6;
+  --link-hover: #b6eaf5;
+  --destaque: #2fa3bc;
+  --destaque-hover: #4cc0d8;
+  --destaque-texto: #072028;
+  --placeholder: #6f8c95;
+  --sombra: rgba(0, 0, 0, 0.35);
+  --erro: #ff9a90;
+  --erro-fundo: #3a1d1b;
+  --sucesso: #7fdba7;
+  --sucesso-fundo: #17352a;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Garante que o atributo "hidden" funcione mesmo com display definido em classes */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--texto);
+  background: var(--fundo);
+  transition: background 0.2s, color 0.2s;
+}
+
+h1,
+h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; }
+
+p { margin: 0 0 1rem; }
+
+a {
+  color: var(--link);
+  font-weight: 700;
+}
+
+a:hover { color: var(--link-hover); }
+
+:focus-visible {
+  outline: 3px solid var(--amarelo);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 2. Marca (logo) ---------- */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.marca-icone {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: var(--amarelo);
+}
+
+.marca-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--branco);
+}
+
+
+/* ---------- 3. Botões ---------- */
+.botao {
+  display: inline-block;
+  width: 100%;
+  padding: 0.8rem 1.4rem;
+  border: 2px solid var(--destaque);
+  border-radius: var(--raio-medio);
+  background: var(--destaque);
+  color: var(--destaque-texto);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.botao:hover {
+  background: var(--destaque-hover);
+  border-color: var(--destaque-hover);
+  color: var(--destaque-texto);
+}
+
+/* Botão de destaque (amarelo) */
+.botao-destaque {
+  width: auto;
+  background: var(--amarelo);
+  border-color: var(--amarelo);
+  color: var(--azul-petroleo);
+}
+
+.botao-destaque:hover {
+  background: var(--amarelo-escuro);
+  border-color: var(--amarelo-escuro);
+  color: var(--azul-petroleo);
+}
+
+/* Botão com contorno (usado no "Sair") */
+.botao-sair {
+  width: auto;
+  padding: 0.45rem 1.1rem;
+  background: transparent;
+  border-color: var(--branco);
+  color: var(--branco);
+}
+
+.botao-sair:hover {
+  background: var(--branco);
+  border-color: var(--branco);
+  color: var(--azul-petroleo);
+}
+
+
+/* ---------- 4. Formulários ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.campo-duplo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+label {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio-pequeno);
+  background: var(--superficie);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: var(--placeholder);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--azul-medio);
+  box-shadow: 0 0 0 3px var(--azul-claro);
+}
+
+/* Classe opcional para o JavaScript marcar campos inválidos */
+input.invalido,
+select.invalido {
+  border-color: var(--erro);
+}
+
+.dica {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+
+/* ---------- 5. Mensagens de sucesso e erro ---------- */
+.mensagem {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 5px solid var(--azul-medio);
+  border-radius: var(--raio-pequeno);
+  background: var(--azul-claro);
+  font-weight: 600;
+}
+
+.mensagem.erro {
+  border-left-color: var(--erro);
+  background: var(--erro-fundo);
+  color: var(--erro);
+}
+
+.mensagem.sucesso {
+  border-left-color: var(--sucesso);
+  background: var(--sucesso-fundo);
+  color: var(--sucesso);
+}
+
+
+/* ---------- 6. Páginas de login e cadastro ---------- */
+.auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Painel azul com bolhas de sabão (tema de banho) */
+.auth-marca {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem clamp(2rem, 6vw, 5rem);
+  color: var(--branco);
+  background:
+    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.16) 0 70px, transparent 71px),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.10) 0 28px, transparent 29px),
+    radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.12) 0 110px, transparent 111px),
+    radial-gradient(circle at 88% 78%, rgba(244, 183, 63, 0.22) 0 46px, transparent 47px),
+    var(--painel);
+}
+
+.auth-marca .marca {
+  margin-bottom: 2rem;
+}
+
+.auth-marca h1 {
+  max-width: 14ch;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+}
+
+.auth-marca p {
+  max-width: 36ch;
+  font-size: 1.1rem;
+  color: #cfe9ee;
+}
+
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.auth-form .painel {
+  width: 100%;
+  max-width: 420px;
+}
+
+.subtitulo {
+  color: var(--texto-suave);
+}
+
+.rodape-form {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+
+/* ---------- 7. Páginas internas ---------- */
+.topo {
+  background: var(--painel);
+}
+
+.topo-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.menu a {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  color: #cfe9ee;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--branco);
+}
+
+/* Página atual no menu */
+.menu a[aria-current="page"] {
+  background: var(--branco);
+  color: var(--azul-petroleo);
+}
+
+.conteudo {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.boas-vindas {
+  margin-bottom: 1.75rem;
+}
+
+.boas-vindas h1 {
+  color: var(--titulo);
+}
+
+.boas-vindas p {
+  color: var(--texto-suave);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+
+/* ---------- 8. Painéis e listas ---------- */
+.painel {
+  padding: 1.75rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-grande);
+  background: var(--superficie);
+  box-shadow: 0 6px 20px var(--sombra);
+}
+
+.painel h2 {
+  margin-bottom: 1.1rem;
+  color: var(--titulo);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--borda);
+  border-left: 6px solid var(--amarelo);
+  border-radius: var(--raio-medio);
+  background: var(--fundo);
+}
+
+.item-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.item-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--titulo);
+}
+
+.item-detalhe {
+  margin: 0.2rem 0 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.selo {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: var(--azul-claro);
+  color: var(--titulo);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.estado-vazio {
+  margin: 0;
+  padding: 1.25rem;
+  border: 2px dashed var(--borda);
+  border-radius: var(--raio-medio);
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+
+/* ---------- Estilização do Botão de Alternar Tema (Controlado por JS) ---------- */
+
+/* O checkbox fica invisível; o rótulo funciona como um interruptor */
+.tema-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tema-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.8rem 0.3rem 0.4rem;
+  border-radius: 999px;
+  color: var(--branco);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tema-botao:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tema-trilho {
+  position: relative;
+  width: 2.8rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.2s;
+}
+
+.tema-trilho::after {
+  content: "\2600";           /* sol (padrão claro) */
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  display: grid;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--amarelo);
+  color: var(--azul-petroleo);
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.tema-texto::before { content: "Claro"; }
+
+/* Foco visível ao navegar pelo teclado */
+.tema-checkbox:focus-visible + .tema-botao {
+  outline: 3px solid var(--amarelo);
+  outline-offset: 2px;
+}
+
+/* Nas páginas de login e cadastro o botão fica no canto superior direito */
+.tema-fixo {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  background: var(--painel);
+}
+
+
+
+
+
+:root.dark .tema-trilho {
+  background: var(--azul-medio);
+}
+
+:root.dark .tema-trilho::after {
+  content: "\263E";           /* lua */
+  transform: translateX(1.3rem);
+  background: var(--azul-claro);
+  color: var(--titulo);
+}
+
+:root.dark .tema-texto::before { content: "Escuro"; }
+
+/* Quando o checkbox estiver marcado, o trilho muda de cor */
+#alternarTema:checked ~ .tema-botao .tema-trilho {
+  background: var(--azul-medio);
+}
+
+/* Quando o checkbox estiver marcado, o sol vira lua e se move */
+#alternarTema:checked ~ .tema-botao .tema-trilho::after {
+  content: "\263E";           /* lua */
+  transform: translateX(1.3rem);
+  background: var(--azul-claro);
+  color: var(--titulo);
+}
+
+/* Quando o checkbox estiver marcado, o texto muda para "Escuro" */
+#alternarTema:checked ~ .tema-botao .tema-texto::before { 
+  content: "Escuro"; 
+}
+
+:root:has(#alternarTema:checked) {
+  --fundo: #0d1c21;
+  --superficie: #15292f;
+  --painel: #0a2a35;
+  --titulo: #8fdcea;
+  --texto: #e3f1f4;
+  --texto-suave: #9db9c1;
+  --borda: #2a4650;
+  --azul-claro: #1f3b44;
+  --azul-medio: #5cc0d6;
+  --link: #7fd3e6;
+  --link-hover: #b6eaf5;
+  --destaque: #2fa3bc;
+  --destaque-hover: #4cc0d8;
+  --destaque-texto: #072028;
+  --placeholder: #6f8c95;
+  --sombra: rgba(0, 0, 0, 0.35);
+  --erro: #ff9a90;
+  --erro-fundo: #3a1d1b;
+  --sucesso: #7fdba7;
+  --sucesso-fundo: #17352a;
+
+  color-scheme: dark;
+}
+
+/* Animação do botão de tema em qualquer lugar da página */
+#alternarTema:checked ~ * .tema-trilho,
+#alternarTema:checked ~ .tema-botao .tema-trilho,
+body:has(#alternarTema:checked) .tema-trilho {
+  background: var(--azul-medio);
+}
+
+#alternarTema:checked ~ * .tema-trilho::after,
+#alternarTema:checked ~ .tema-botao .tema-trilho::after,
+body:has(#alternarTema:checked) .tema-trilho::after {
+  content: "\263E";
+  transform: translateX(1.3rem);
+  background: var(--azul-claro);
+  color: var(--titulo);
+}
+
+#alternarTema:checked ~ * .tema-texto::before,
+#alternarTema:checked ~ .tema-botao .tema-texto::before,
+body:has(#alternarTema:checked) .tema-texto::before {
+  content: "Escuro";
+}
+
+
+
+
+/* ---------- 9. Responsividade ---------- */
+@media (max-width: 860px) {
+  .auth {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .auth-marca {
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-marca .marca {
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-marca h1 {
+    max-width: none;
+    font-size: 1.9rem;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .campo-duplo {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .painel {
+    padding: 1.25rem;
+  }
+
+  .topo-conteudo {
+    justify-content: center;
+  }
+}
+
+

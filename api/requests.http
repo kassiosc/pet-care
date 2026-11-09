@@ -1,0 +1,31 @@
+@base = http://localhost:3300
+
+### Cadastrar usuário
+POST {{base}}/users
+Content-Type: application/json
+
+{ "name": "Ana", "email": "ana@email.com", "password": "1234" }
+
+### Login
+POST {{base}}/login
+Content-Type: application/json
+
+{ "email": "ana@email.com", "password": "1234" }
+
+### Cadastrar pet
+POST {{base}}/pets
+Content-Type: application/json
+
+{ "nome": "Mel", "raca": "Poodle", "idade": 3, "tipo": "Cão", "cor": "Branca", "idU": 1 }
+
+### Listar pets do usuário
+GET {{base}}/user/1/pets
+
+### Criar agendamento
+POST {{base}}/agendamento
+Content-Type: application/json
+
+{ "idU": 1, "petId": 1, "servico": "Banho", "data": "2026-12-01" }
+
+### Listar agendamentos do usuário
+GET {{base}}/user/1/agendamento

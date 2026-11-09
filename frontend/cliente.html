@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Área do Cliente | Pet Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-interna">
+
+  <input type="checkbox" id="alternarTema" class="tema-checkbox" aria-label="Ativar tema escuro">
+
+  <header class="topo">
+    <div class="topo-conteudo">
+      <div class="marca">
+        <svg class="marca-icone" viewBox="0 0 64 64" aria-hidden="true">
+          <ellipse cx="32" cy="42" rx="14" ry="11"/>
+          <circle cx="14" cy="28" r="6"/>
+          <circle cx="26" cy="16" r="6"/>
+          <circle cx="38" cy="16" r="6"/>
+          <circle cx="50" cy="28" r="6"/>
+        </svg>
+        <span class="marca-nome">Pet Care</span>
+      </div>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="cliente.html" aria-current="page">Meus pets</a>
+        <a href="agendamentos.html">Agendamentos</a>
+        <label for="alternarTema" class="tema-botao" title="Alternar entre tema claro e escuro">
+          <span class="tema-trilho" aria-hidden="true"></span>
+          <span class="tema-texto"></span>
+        </label>
+        <button type="button" id="sair" class="botao botao-sair">Sair</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="conteudo">
+
+    <section class="boas-vindas">
+      <h1>Olá, <span id="nomeCliente">cliente</span>!</h1>
+      <p>Cadastre seus pets e depois agende o próximo banho ou tosa.</p>
+      <a href="agendamentos.html" class="botao botao-destaque">Agendar um serviço</a>
+    </section>
+
+    <div class="grade">
+
+      <!-- Cadastro de pets -->
+      <section class="painel">
+        <h2>Cadastrar pet</h2>
+
+        <form id="formPet" novalidate>
+          <div class="campo">
+            <label for="especie">Espécie</label>
+            <select id="especie" name="especie">
+              <option value="">Selecione</option>
+              <option value="Cão">Cão</option>
+              <option value="Gato">Gato</option>
+              <option value="Outra">Outra</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="raca">Raça</label>
+            <input type="text" id="raca" name="raca" placeholder="Ex.: Poodle">
+          </div>
+
+          <div class="campo">
+            <label for="nomePet">Nome do pet</label>
+            <input type="text" id="nomePet" name="nomePet" placeholder="Ex.: Mel">
+          </div>
+
+          <div class="campo">
+            <label for="idade">Idade (em anos)</label>
+            <input type="number" id="idade" name="idade" min="0" step="1" placeholder="Ex.: 3">
+          </div>
+
+          <!-- Mensagens de erro ou sucesso -->
+          <p id="mensagem" class="mensagem" role="alert" hidden></p>
+
+          <button type="submit" class="botao">Salvar pet</button>
+        </form>
+      </section>
+
+      <!-- Listagem de pets -->
+      <section class="painel">
+        <h2>Meus pets</h2>
+
+        <!-- Exibido pelo JavaScript quando não houver pets cadastrados -->
+        <p id="petsVazio" class="estado-vazio" hidden></p>
+
+        <!--
+          Sugestão de estrutura para cada pet (o JavaScript pode criar este <li>):
+
+          <li class="item">
+            <div class="item-principal">
+              <strong class="item-titulo">Mel</strong>
+              <span class="selo">Cão</span>
+            </div>
+            <p class="item-detalhe">Poodle · 3 anos</p>
+          </li>
+        -->
+        <ul id="listaPets" class="lista"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

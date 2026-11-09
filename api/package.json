@@ -1,0 +1,16 @@
+{
+  "name": "pet-care-api",
+  "version": "1.0.0",
+  "description": "API REST do Pet Care: usuários, pets e agendamentos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "express": "^5.1.0"
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar | Pet Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-auth">
+
+  <input type="checkbox" id="alternarTema" class="tema-checkbox" aria-label="Ativar tema escuro">
+
+  <label for="alternarTema" class="tema-botao tema-fixo" title="Alternar entre tema claro e escuro">
+    <span class="tema-trilho" aria-hidden="true"></span>
+    <span class="tema-texto"></span>
+  </label>
+
+  <main class="auth">
+
+    <!-- Painel de apresentação -->
+    <section class="auth-marca">
+      <div class="marca">
+        <svg class="marca-icone" viewBox="0 0 64 64" aria-hidden="true">
+          <ellipse cx="32" cy="42" rx="14" ry="11"/>
+          <circle cx="14" cy="28" r="6"/>
+          <circle cx="26" cy="16" r="6"/>
+          <circle cx="38" cy="16" r="6"/>
+          <circle cx="50" cy="28" r="6"/>
+        </svg>
+        <span class="marca-nome">Pet Care</span>
+      </div>
+      <h1>Banho, tosa e carinho para o seu pet.</h1>
+      <p>Cadastre seus pets e agende os serviços sem sair de casa.</p>
+    </section>
+
+    <!-- Formulário de login -->
+    <section class="auth-form">
+      <div class="painel">
+        <h2>Entrar na sua conta</h2>
+        <p class="subtitulo">Use o e-mail e a senha do seu cadastro.</p>
+
+        <form id="formLogin" novalidate>
+          <div class="campo">
+            <label for="loginEmail">E-mail</label>
+            <input type="email" id="loginEmail" name="email" placeholder="você@exemplo.com" autocomplete="email">
+          </div>
+
+          <div class="campo">
+            <label for="loginSenha">Senha</label>
+            <input type="password" id="loginSenha" name="senha" placeholder="Sua senha" autocomplete="current-password">
+          </div>
+
+          <!-- Mensagens de erro ou sucesso (o JavaScript remove o atributo "hidden" e define a classe "erro" ou "sucesso") -->
+          <p id="mensagem" class="mensagem"></p>
+
+          <button type="submit" class="botao">Entrar</button>
+        </form>
+
+        <p class="rodape-form">Ainda não tem conta? <a href="cadastro.html">Criar cadastro</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
